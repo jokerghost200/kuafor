@@ -1,3 +1,321 @@
-h1{
-    color: red;
+:root {
+    --kuafor-orange: #ff5e00;
+    --kuafor-gradient: linear-gradient(135deg, #FF5e00 0%, #FFA500 100%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body { 
+    background: #f8f9fa;
+    height: 100vh;
+    overflow: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    padding-bottom: 0;
+}
+
+/* Header */
+.kuafor-header {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 20px 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.kuafor-logo {
+    font-weight: 600;
+    font-size: 1.8rem;
+    color: var(--kuafor-orange);
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.kuafor-logo img {
+    height: 40px;
+    width: auto;
+}
+
+/* Hero Section avec Vidéo Background */
+.hero-section {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    z-index: 0;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(247, 106, 18, 0.88) 100%);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 120px;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.hero-content p {
+    font-size: 1.3rem;
+    margin-bottom: 40px;
+    opacity: 0.95;
+    line-height: 1.6;
+    animation: fadeInUp 1s ease-out;
+}
+
+/* Search Card */
+.search-card {
+    background: white;
+    border-radius: 25px;
+    padding: 80px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    border: none;
+    max-width: 600px;
+    margin: -20px auto;
+    animation: fadeInUp 1.2s ease-out;
+}
+
+.btn-location {
+    background: white;
+    color: var(--kuafor-orange);
+    border: none;
+    font-weight: 700;
+    border-radius: 15px;
+    padding: 16px 30px;
+    font-size: 1rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-location:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    color: var(--kuafor-orange);
+}
+
+.btn-locate {
+    background: var(--kuafor-gradient);
+    color: white;
+    border: none;
+    font-weight: 700;
+    padding: 16px;
+    border-radius: 15px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.btn-locate:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 94, 0, 0.3);
+}
+
+.form-select {
+    border: 2px solid #f0f0f0;
+    border-radius: 12px;
+    padding: 14px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-select:focus {
+    border-color: var(--kuafor-orange);
+    box-shadow: 0 0 0 3px rgba(255, 94, 0, 0.1);
+}
+
+#location-text {
+    margin-top: 15px;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+/* Results Area */
+#results-area {
+    max-width: 1200px;
+    margin: 40px auto;
+}
+
+.result-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.result-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+}
+
+.result-card img {
+    height: 220px;
+    object-fit: cover;
+    width: 100%;
+}
+
+.result-card .card-body {
+    padding: 20px;
+}
+
+.badge-distance {
+    background: linear-gradient(135deg, #FFF5E6 0%, #FFE9CC 100%);
+    color: var(--kuafor-orange);
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 20px;
+}
+
+.btn-view-catalog {
+    background: linear-gradient(135deg, #FFF5E6 0%, #FFE9CC 100%);
+    color: var(--kuafor-orange);
+    font-weight: 700;
+    border: none;
+    border-radius: 12px;
+    padding: 12px;
+    transition: all 0.3s ease;
+}
+
+.btn-view-catalog:hover {
+    background: var(--kuafor-gradient);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Bottom Navigation */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: white;
+    display: flex;
+    justify-content: space-around;
+    padding: 12px 0;
+    border-top: 1px solid #eee;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+    z-index: 999;
+}
+
+.nav-link {
+    text-align: center;
+    color: #888;
+    text-decoration: none;
+    font-size: 0.75rem;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.nav-link.active { 
+    color: var(--kuafor-orange);
+}
+
+.nav-link i { 
+    font-size: 1.5rem;
+}
+
+.nav-link:hover {
+    color: var(--kuafor-orange);
+    transform: translateY(-2px);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .hero-content p {
+        font-size: 0.95rem;
+    }
+
+    .search-card {
+        padding: 20px;
+        margin: 0 15px;
+    }
+
+    .kuafor-logo {
+        font-size: 1.5rem;
+    }
+
+    .result-card img {
+        height: 180px;
+    }
+
+    .hero-content {
+        padding-top: 100px;
+    }
+
+}
+
+@media (min-width: 769px) {
+    #results-area .row {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 25px;
+    }
+    .bottom-nav {
+        display: none;
+    }
 }
