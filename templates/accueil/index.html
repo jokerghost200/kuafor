@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -6,63 +7,241 @@
     <title>Kuafor - Beauté de proximité</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <style>
         :root {
             --kuafor-orange: #ff5e00;
             --kuafor-gradient: linear-gradient(135deg, #FF5e00 0%, #FFA500 100%);
         }
-        body { 
-            background: #ffffff; /* Fond blanc par défaut */
-            min-height: 100vh;
-            padding-bottom: 80px;
-            font-family: serif;
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        /* Header pur blanc selon votre demande */
+
+        body { 
+            background: #f8f9fa;
+            height: 100vh;
+            overflow: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            padding-bottom: 0;
+        }
+
+        /* Header */
         .kuafor-header {
-            background:var(--kuafor-gradient);
-            padding: 15px;
-            text-align: center;
-           box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
         }
+
         .kuafor-logo {
-            font-weight: lighter;
+            font-weight: 600;
             font-size: 1.8rem;
-            color:#fff;
-            letter-spacing: 1px;
+            color: var(--kuafor-orange);
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-        /* Section principale avec dégradé léger */
+
+        .kuafor-logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        /* Hero Section avec Vidéo Background */
         .hero-section {
-            background: var(--kuafor-gradient);
-            padding: 30px 20px;
-            border-radius: 0 0 30px 30px;
-            color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
         }
+
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(247, 106, 18, 0.88) 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 120px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.95;
+            line-height: 1.6;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        /* Search Card */
+        .search-card {
+            background: white;
+            border-radius: 25px;
+            padding: 80px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            border: none;
+            max-width: 600px;
+            margin: -20px auto;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
         .btn-location {
             background: white;
             color: var(--kuafor-orange);
             border: none;
-            font-weight: bold;
+            font-weight: 700;
             border-radius: 15px;
-            padding: 12px;
+            padding: 16px 30px;
+            font-size: 1rem;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
         }
-        .search-card {
-            background: white;
-            border-radius: 20px;
-            padding: 20px;
-            margin-top: -30px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            border: none;
+
+        .btn-location:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            color: var(--kuafor-orange);
         }
+
         .btn-locate {
             background: var(--kuafor-gradient);
             color: white;
             border: none;
-            font-weight: bold;
-            padding: 12px;
+            font-weight: 700;
+            padding: 16px;
             border-radius: 15px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
         }
+
+        .btn-locate:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 94, 0, 0.3);
+        }
+
+        .form-select {
+            border: 2px solid #f0f0f0;
+            border-radius: 12px;
+            padding: 14px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-select:focus {
+            border-color: var(--kuafor-orange);
+            box-shadow: 0 0 0 3px rgba(255, 94, 0, 0.1);
+        }
+
+        #location-text {
+            margin-top: 15px;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        /* Results Area */
+        #results-area {
+            max-width: 1200px;
+            margin: 40px auto;
+        }
+
+        .result-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .result-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .result-card img {
+            height: 220px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        .result-card .card-body {
+            padding: 20px;
+        }
+
+        .badge-distance {
+            background: linear-gradient(135deg, #FFF5E6 0%, #FFE9CC 100%);
+            color: var(--kuafor-orange);
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 20px;
+        }
+
+        .btn-view-catalog {
+            background: linear-gradient(135deg, #FFF5E6 0%, #FFE9CC 100%);
+            color: var(--kuafor-orange);
+            font-weight: 700;
+            border: none;
+            border-radius: 12px;
+            padding: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-view-catalog:hover {
+            background: var(--kuafor-gradient);
+            color: white;
+            transform: translateY(-2px);
+        }
+
         /* Bottom Navigation */
         .bottom-nav {
             position: fixed;
@@ -71,64 +250,180 @@
             background: white;
             display: flex;
             justify-content: space-around;
-            padding: 10px 0;
+            padding: 12px 0;
             border-top: 1px solid #eee;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+            z-index: 999;
         }
+
         .nav-link {
             text-align: center;
             color: #888;
             text-decoration: none;
             font-size: 0.75rem;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
         }
-        .nav-link.active { color: var(--kuafor-orange); }
-        .nav-link i { font-size: 1.4rem; display: block; }
+
+        .nav-link.active { 
+            color: var(--kuafor-orange);
+        }
+
+        .nav-link i { 
+            font-size: 1.5rem;
+        }
+
+        .nav-link:hover {
+            color: var(--kuafor-orange);
+            transform: translateY(-2px);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content p {
+                font-size: 0.95rem;
+            }
+
+            .search-card {
+                padding: 20px;
+                margin: 0 15px;
+            }
+
+            .kuafor-logo {
+                font-size: 1.5rem;
+            }
+
+            .result-card img {
+                height: 180px;
+            }
+
+            .hero-content {
+                padding-top: 100px;
+            }
+
+        }
+
+        @media (min-width: 769px) {
+            #results-area .row {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+                gap: 25px;
+            }
+            .bottom-nav {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
 
+    <!-- Header -->
     <header class="kuafor-header">
-        <span class="kuafor-logo">KUAFOR</span>
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <span class="kuafor-logo">
+                    <i class="fa-solid fa-scissors"></i> KUAFOR
+                </span>
+                <nav class="d-none d-md-flex gap-4">
+                    <a href="#" class="text-decoration-none text-dark fw-semibold">Accueil</a>
+                    <a href="#" class="text-decoration-none text-dark fw-semibold">Messages</a>
+                    <a href="#" class="text-decoration-none text-dark fw-semibold">Reservations</a>
+                    <a href="#" class="text-decoration-none text-dark fw-semibold">Profil</a>
+                </nav>
+            </div>
+        </div>
     </header>
 
-    <div class="hero-section text-center">
-        <h2 class="mb-3">Trouvez votre artiste beauté au Cameroun</h2>
-        <p>Reserver les meilleurs talents directement a votre domicile service rapide professionnel et personaliser</p>
-        <button class="btn btn-location w-100" onclick="getLocation()">
-            <i class="bi bi-geo-alt-fill"></i> UTILISER MA POSITION
-        </button>
-        <p id="location-text" class="small mt-2 opacity-75"></p>
-    </div>
+    <!-- Hero Section avec Vidéo Background -->
+    <div class="hero-section">
+        <!-- Vidéo en arrière-plan -->
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="{{ MEDIA_URL }}videos/vid.mp4" type="video/mp4">
+        </video>
+        
+        <!-- Overlay avec gradient -->
+        <div class="hero-overlay"></div>
 
-    <div class="container">
-        <div class="card search-card">
-            <div class="mb-3">
-                <label class="form-label text-muted small fw-bold">SERVICE RECHERCHÉ</label>
-                <select id="service" class="form-select border-0 bg-light p-3" style="border-radius: 12px;">
-                    <option value="COIFFURE_H">Coiffure Homme</option>
-                    <option value="COIFFURE_F">Coiffure Femme</option>
-                    <option value="MAKEUP">Make-up professionnel</option>
-                    <option value="ONGLERIE">Onglerie</option>
-                </select>
+        <!-- Contenu Hero -->
+        <div class="hero-content">
+            <h1>Trouvez votre artiste beauté au Cameroun</h1>
+            <p>Réservez les meilleurs talents directement à votre domicile Service rapide, professionnel et personnalisé</p>
+
+            <!-- Search Card -->
+            <div class="search-card">
+                <button class="btn btn-location w-100 mb-4" onclick="getLocation()">
+                    <i class="bi bi-geo-alt-fill"></i> UTILISER MA POSITION
+                </button>
+                <p id="location-text" class="text-muted small"></p>
+
+                <div class="mb-4">
+                    <label class="form-label text-muted small fw-bold">SERVICE RECHERCHÉ</label>
+                    <select id="service" class="form-select">
+                        <option value="COIFFURE_H">Coiffure Homme</option>
+                        <option value="COIFFURE_F">Coiffure Femme</option>
+                        <option value="MAKEUP">Make-up professionnel</option>
+                        <option value="ONGLERIE">Onglerie</option>
+                    </select>
+                </div>
+
+                <button class="btn btn-locate w-100" onclick="search()">
+                    <i class="bi bi-search"></i> LOCALISER
+                </button>
             </div>
-            <button class="btn btn-locate w-100 shadow" onclick="search()">
-                LOCALISER
-            </button>
         </div>
     </div>
-    <div id="results-area" class="container mt-4 pb-5">
+
+    <!-- Results Area -->
+    <div id="results-area" class="container py-5" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255, 255, 255, 0.98); z-index: 2000; overflow-y: auto; padding-top: 100px;">
+        <button onclick="closeResults()" class="btn btn-sm mb-3" style="background: var(--kuafor-gradient); color: white; position: sticky; top: 20px;">
+            <i class="bi bi-arrow-left"></i> Retour
+        </button>
+        <div id="results-content"></div>
     </div>
 
+    <!-- Bottom Navigation (Mobile) -->
     <nav class="bottom-nav">
-        <a href="#" class="nav-link active"><i class="bi bi-house-door-fill"></i>Accueil</a>
-        <a href="#" class="nav-link"><i class="bi bi-chat-left-text"></i>Messages</a>
-        <a href="#" class="nav-link"><i class="bi bi-calendar-event"></i>Réservations</a>
-        <a href="#" class="nav-link"><i class="bi bi-person-circle"></i>Profil</a>
+        <a href="#" class="nav-link active">
+            <i class="bi bi-house-door-fill"></i>
+            <span>Accueil</span>
+        </a>
+        <a href="#" class="nav-link">
+            <i class="bi bi-chat-left-text"></i>
+            <span>Messages</span>
+        </a>
+        <a href="#" class="nav-link">
+            <i class="bi bi-calendar-event"></i>
+            <span>Réservations</span>
+        </a>
+        <a href="#" class="nav-link">
+            <i class="bi bi-person-circle"></i>
+            <span>Profil</span>
+        </a>
     </nav>
 
     <script>
     let userCoords = null;
 
-    // Fonction pour récupérer la position (Phase 1 du mécanisme opérationnel)
+    // Fonction pour récupérer la position
     function getLocation() {
         const statusText = document.getElementById('location-text');
         
@@ -140,11 +435,10 @@
                         lat: pos.coords.latitude,
                         lng: pos.coords.longitude
                     };
-                    statusText.innerText = "✅ Position activée (Douala, CM)";
-                    statusText.classList.add('text-success');
+                    statusText.innerHTML = '<span class="text-success">✅ Position activée (Douala, CM)</span>';
                 },
                 (err) => {
-                    statusText.innerText = "❌ Erreur de géolocalisation";
+                    statusText.innerHTML = '<span class="text-danger">❌ Erreur de géolocalisation</span>';
                     console.error(err);
                 }
             );
@@ -153,7 +447,7 @@
         }
     }
 
-    // Fonction de recherche (Matching Géospatial)
+    // Fonction de recherche
     async function search() {
         const service = document.getElementById('service').value;
         const resultsArea = document.getElementById('results-area');
@@ -163,49 +457,67 @@
             return;
         }
 
-        resultsArea.innerHTML = '<div class="text-center mt-3"><div class="spinner-border text-warning" role="status"></div></div>';
+        resultsArea.innerHTML = '<div class="text-center py-5"><div class="spinner-border text-warning" style="width: 3rem; height: 3rem;" role="status"></div></div>';
+        resultsArea.style.display = 'block';
 
         try {
-            // Appel à l'API Django que nous avons créée
             const response = await fetch(`/api/recherche/?lat=${userCoords.lat}&lng=${userCoords.lng}&category=${service}`);
             const data = await response.json();
-
             displayResults(data);
         } catch (error) {
             resultsArea.innerHTML = '<p class="text-danger text-center">Erreur de connexion au serveur Kuafor</p>';
         }
     }
 
-    // Affichage des cartes artistes (Vue Liste)
+    // Affichage des résultats
     function displayResults(artistes) {
         const resultsArea = document.getElementById('results-area');
-        resultsArea.innerHTML = ''; // On vide la zone
+        const resultsContent = document.getElementById('results-content');
+        resultsContent.innerHTML = '';
+
+        // Afficher la zone de résultats
+        resultsArea.style.display = 'block';
 
         if (artistes.length === 0) {
-            resultsArea.innerHTML = '<p class="text-center text-muted mt-4">Aucun artiste disponible à proximité pour ce service.</p>';
+            resultsContent.innerHTML = `
+                <div class="text-center py-5">
+                    <i class="bi bi-search" style="font-size: 4rem; color: #ccc;"></i>
+                    <p class="text-muted mt-3">Aucun artiste disponible à proximité pour ce service.</p>
+                </div>
+            `;
             return;
         }
 
+        let html = '<div class="row">';
         artistes.forEach(artiste => {
-            const photo = artiste.photo_principale || 'https://via.placeholder.com/300x200?text=Kuafor';
+            const photo = artiste.photo_principale || 'https://via.placeholder.com/400x300?text=Kuafor';
             
-            resultsArea.innerHTML += `
-                <div class="card mb-3 border-0 shadow-sm" style="border-radius: 15px; overflow: hidden;">
-                    <img src="${photo}" class="card-img-top" style="height: 160px; object-fit: cover;">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h6 class="card-title mb-0 fw-bold">${artiste.nom_salon}</h6>
-                            <span class="badge bg-light text-dark">${artiste.distance} km</span>
+            html += `
+                <div class="col-12 col-md-6 col-lg-4 mb-4">
+                    <div class="card result-card">
+                        <img src="${photo}" class="card-img-top" alt="${artiste.nom_salon}">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h5 class="card-title mb-0 fw-bold">${artiste.nom_salon}</h5>
+                                <span class="badge-distance">${artiste.distance} km</span>
+                            </div>
+                            <p class="card-text text-muted small text-truncate">${artiste.description}</p>
+                            <button class="btn btn-view-catalog w-100 mt-3">
+                                <i class="bi bi-eye"></i> VOIR LE CATALOGUE
+                            </button>
                         </div>
-                        <p class="card-text small text-muted mt-2 text-truncate">${artiste.description}</p>
-                        <button class="btn btn-sm w-100 mt-2" style="background: #FFF5E6; color: #FF8C00; font-weight: bold; border-radius: 10px;">
-                            VOIR LE CATALOGUE
-                        </button>
                     </div>
                 </div>
             `;
         });
+        html += '</div>';
+        resultsContent.innerHTML = html;
     }
-</script>
+
+    // Fonction pour fermer les résultats
+    function closeResults() {
+        document.getElementById('results-area').style.display = 'none';
+    }
+    </script>
 </body>
 </html>
