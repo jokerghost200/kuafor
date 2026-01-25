@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'accueil',
+    'artiste',
 
 ]
 
@@ -72,6 +74,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'kuafor.wsgi.application'
 
 ALLOWED_HOSTS = ['*']
+
 
 
 # Database

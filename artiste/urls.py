@@ -3,15 +3,12 @@ from django.conf.urls.static import static
 from . import views
 from django.urls import path 
 
-app_name = 'accueil'
+app_name = 'artiste'
 
 urlpatterns = [
-    # La page d'accueil (votre interface orange et blanche)
-    path('', views.accueil, name='accueil'),
-    
-    # La route API pour le bouton "Localiser"
-]
+path('recherche/', views.rechercher_artistes, name='rechercher_artistes'),
 
-# Gestion des médias (indispensable pour les portfolios d'artistes)
+    
+]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
